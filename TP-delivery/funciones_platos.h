@@ -36,7 +36,7 @@ int op;
         {
             case 1:
                 {
-                    //nuevo_plato();
+                    nuevo_plato();
                 }break;
             case 2:
                 {
@@ -71,5 +71,98 @@ int op;
 
     }while(op!=0);
 }
+
+
+void nuevo_plato()
+{
+    struct Platos plato;
+    bool validado = cargar_registro(&plato);
+
+    while(!validado)
+    {
+         bool reintentar = menu_reintentar();
+         if(!reintentar)
+         {
+             cout<<"El plato no se ha podido cargar exitosamente."<<endl;
+             return;
+         }
+         validado = cargar_registro(&plato);
+    }
+
+    bool grabado = grabar_registro(plato);
+
+    if(grabado)
+    {
+        cout<<"El plato ha sido cargado exitosamente!"<<endl;
+    }
+    else
+    {
+        cout<<"Error de archivo. El plato no se ha podido cargar exitosamente."<<endl;
+    }
+}
+
+
+bool cargar_registro(Platos *plato)
+{
+    cout<<"Ingrese un ID: ";
+    bool validado_ID = validacion_entero(&(plato->ID));
+    if(!validado_ID || plato->ID <= 0)return false;
+
+    validado_ID = ID_unico(plato->ID);
+    if(!validado_ID) return false;
+
+    cout<<" Ingrese un nombre: ";
+    cin.ignore ();
+    cin.getline (plato->nombre, 50);
+
+    cout<<"Ingrese un costo de preparacion: ";
+    cin>>plato->costo_prep;
+
+    cout<<"Ingrese un valor de venta: ";
+    cin>>plato->valor_venta;
+
+    cout<< "Ingrese un tiempo de preparacion: ";
+    cin>>plato->tiempo_prep;
+
+    cout<<"Ingrese un ID del restaurante: ";
+    cin>>plato->ID_restaurante;
+
+    cout<<"Ingrese una comision de restaurante: ";
+    cin>>plato->comision_restaurante;
+
+    cout<<"Ingrese ID de Categoria: ";
+    cin>>plato->ID_categoria;
+
+    plato->estado=true;
+
+return true;
+}
+
+
+bool ID_unico(int ID)
+{
+    Platos plato;
+    FILE *p;
+
+    p=fopen(archivo_platos,"ab+");
+    fseek(p,0,0);
+    if(p==NULL) return false;
+
+    while (fread(&ID, sizeof Platos, 1, p))
+    {
+        if(ID == plato.ID)
+        {
+            fclose(p);
+            return false;
+        }
+    }
+fclose(p);
+return true;
+}
+
+
+
+
+
 
 #endif // FUNCIONES_PLATOS_H_INCLUDED

@@ -19,5 +19,10 @@ void seccion_platos();
 int menu_platos();
 bool menu_reintentar();
 bool validacion_entero(int *);
+void nuevo_plato();
+bool cargar_registro(Platos *);
+bool grabar_registro(Platos);
+bool ID_unico(int);
+const char archivo_platos[]="Platos.dat";
 
 #endif // PROTOTIPOS_H_INCLUDED
