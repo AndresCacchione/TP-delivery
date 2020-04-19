@@ -9,7 +9,7 @@ struct Platos
     float valor_venta;
     int tiempo_prep;
     int ID_restaurante;
-    float comision_restaurante;
+    int comision_restaurante;
     int ID_categoria;
     bool estado;
 };
@@ -24,5 +24,19 @@ bool cargar_registro(Platos *);
 bool grabar_registro(Platos);
 bool ID_unico(int);
 const char archivo_platos[]="Platos.dat";
+bool validacion_cadena(char *);
+bool validacion_flotante(float *);
+int modificar_plato();
+int modifica_plato_por_ID(int);
+void mostrar_resultado(int);
+void listar_plato_por_ID();
+bool validacion_ID(int *);
+int buscar_plato(int, Platos *);
+void mostrar_plato(struct Platos);
+void listar_platos_por_restaurant();
+int mostrar_platos_por_restaurant(int, Platos *);
+void listar_todos_los_platos();
+int eliminar_plato();
+int eliminando_plato(int);
 
 #endif // PROTOTIPOS_H_INCLUDED

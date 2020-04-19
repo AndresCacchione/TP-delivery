@@ -2,6 +2,23 @@
 #define FUNCIONES_H_INCLUDED
 
 
+bool validacion_ID(int *ID)
+{
+    while (!(validacion_entero(ID)) || (*ID <= 0))
+    {
+        bool reintentar= menu_reintentar();
+        if (!reintentar)
+            {
+                 Sleep(1000);
+                 return false;
+            }
+        cls();
+        cout<<"Reingrese el ID: ";
+    }
+return true;
+}
+
+
 int menu_principal()
 {
     cls();
@@ -27,8 +44,11 @@ return op;
 bool menu_reintentar()
 {
     cls();
-    cout<<"Opción ingresada no válida."<<endl;
+    cin.clear();
+    cin.ignore(1000,'\n');
     bool reintentar;
+
+    cout<<"Opción ingresada no válida."<<endl;
     cout<<"¿Desea reintentar?"<<endl<<endl;
 
     cout<<"*-- 1 - SI --*"<<endl;
@@ -40,8 +60,8 @@ bool menu_reintentar()
     {
          cin.clear();
          cin.ignore(1000,'\n');
-
          cls();
+
          cout<<"Opción no válida."<<endl;
          cout<<"¿Desea reintentar?"<<endl<<endl;
 
@@ -57,6 +77,30 @@ bool validacion_entero(int *entero)
 {
     bool validado;
     if(cin>>*entero)
+        {
+            validado=true;
+        }
+    else
+        {
+            validado=false;
+        }
+return validado;
+}
+
+bool validacion_cadena(char *cad)
+{
+    bool valida=false;
+    for(unsigned int i=0;i<strlen(cad);i++)
+    {
+        if(cad[i]!='\0'&& cad[i]!=32)valida=true;
+    }
+return valida;
+}
+
+bool validacion_flotante(float *flotante)
+{
+    bool validado;
+    if(cin>>*flotante)
         {
             validado=true;
         }

@@ -54,7 +54,7 @@ int main()
     }while(op!=0);
 
     cls();
-    cout<<"Gracias por utulizar Lara, te esperamos pronto!!!"<<endl;
+    cout<<"Gracias por utilizar Lara, te esperamos pronto!!!"<<endl;
 
 return 0;
 }
