@@ -45,8 +45,8 @@ int main()
             case 0:{}break;
             default:
                 {
-                    bool reintentar = menu_reintentar();
-                    if(!reintentar)op=0;
+                    ;
+                    if(!(menu_reintentar()))op=0;
                 }break;
         }
         anykey();
