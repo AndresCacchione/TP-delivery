@@ -380,40 +380,52 @@ void nuevo_plato()
 
 bool cargar_registro(Platos *plato)
 {
-    cout<<"Ingrese un ID: ";
+    cout<<"1.Ingrese ID: ";
+    gotoxy(40, 1);
     bool validado = validacion_entero(&(plato->ID));
     if(!validado || (plato->ID <= 0))return false;
 
     validado = ID_unico(plato->ID);
     if(!validado) return false;
 
-    cout<<"Ingrese el nombre del plato: ";
+    cout<<"2.Ingrese nombre del plato: ";
     cin.ignore();
+    gotoxy(40,2);
     cin.getline(plato->nombre, 50);
     validado = validacion_cadena(plato->nombre);
     if(!validado) return false;
 
-    cout<<"Ingrese un costo de preparacion: $";
+    cout<<"3.Ingrese costo de preparacion: ";
+    gotoxy(38,3);
+    cout<<"$";
+    gotoxy(40,3);
     validado = validacion_flotante(&(plato->costo_prep));
     if(!validado || (plato->costo_prep <= 0))return false;
 
-    cout<<"Ingrese un valor de venta: $";
+    cout<<"4.Ingrese valor de venta: ";
+    gotoxy(38,4);
+    cout<<"$";
+    gotoxy(40,4);
     validado = validacion_flotante(&(plato->valor_venta));
     if(!validado || (plato->valor_venta < plato->costo_prep))return false;
 
-    cout<< "Ingrese un tiempo de preparacion en minutos: ";
+    cout<<"5.Ingrese tiempo de preparacion(min):";
+    gotoxy(40,5);
     validado = validacion_entero(&(plato->tiempo_prep));
     if(!validado || (plato->tiempo_prep <= 0))return false;
 
-    cout<<"Ingrese un ID del restaurante: ";
+    cout<<"6.Ingrese ID del restaurante: ";
+    gotoxy(40,6);
     validado = validacion_entero(&(plato->ID_restaurante));
     if(!validado || (plato->ID_restaurante <= 0))return false;
 
-    cout<<"Ingrese una comision de restaurante(%): ";
+    cout<<"7.Ingrese comision de restaurante(%): ";
+    gotoxy(40,7);
     validado = validacion_entero(&(plato->comision_restaurante));
     if(!validado || (plato->comision_restaurante<0) || (plato->comision_restaurante>100))return false;
 
-    cout<<"Ingrese ID de Categoria: ";
+    cout<<"8.Ingrese ID de Categoria: ";
+    gotoxy(40,8);
     validado = validacion_entero(&(plato->ID_categoria));
     if(!validado || (plato->ID_categoria <= 0))return false;
 
