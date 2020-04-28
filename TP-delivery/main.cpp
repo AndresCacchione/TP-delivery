@@ -14,6 +14,11 @@ using namespace rlutil;
 
 int main()
 {
+    char saludo[5]="hola";
+    char saludo2[6]="holas";
+    if (strcmp(saludo2,saludo))cout<<"Las cadenas son distintas"<<endl;
+    return 0;
+
     setlocale(LC_ALL,"Spanish");
     int op;
 

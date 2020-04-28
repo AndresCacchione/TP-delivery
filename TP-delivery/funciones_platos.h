@@ -134,8 +134,11 @@ void listar_todos_los_platos()
 
     while(fread(&plato,sizeof (Platos),1,p))
     {
-        mostrar_plato(plato);
-        cout<<endl<<endl;
+        if(plato.estado)
+        {
+            mostrar_plato(plato);
+            cout<<endl<<endl;
+        }
     }
     fclose(p);
 }
@@ -172,7 +175,7 @@ int mostrar_platos_por_restaurant(int ID_rest,Platos *plato)
 
     while(fread(plato,sizeof (Platos), 1, p))
     {
-        if(plato->ID_restaurante==ID_rest)
+        if(plato->ID_restaurante==ID_rest && plato->estado)
         {
             mostrar_plato(*plato);
             cout<<endl<<endl;
@@ -197,19 +200,16 @@ void listar_plato_por_ID()
         }
     Platos plato;
     int validado = buscar_plato(ID, &plato);
-    if(validado==1)
-        {
-            cout<<"El plato buscado no existe en la base de datos.";
-            return;
-        }
-    if(validado==2)
-        {
-            cout<<"Error en la lectura del archivo.";
-            return;
-        }
-    cls();
-    cout<<"El plato buscado es el siguiente:"<<endl<<endl;
-    mostrar_plato(plato);
+    if(!validado)
+    {
+        cls();
+        cout<<"El plato buscado es el siguiente:"<<endl<<endl;
+        mostrar_plato(plato);
+        return;
+    }
+    if(validado==1) cout<<"El plato buscado no existe en la base de datos.";
+    if(validado==2) cout<<"Error en la lectura del archivo.";
+    if(validado==3) cout<<"El plato no se encuentra activo.";
 }
 
 
@@ -223,6 +223,7 @@ void mostrar_plato(Platos plato)
     cout<<"ID del restaurante: "<< plato.ID_restaurante <<endl;
     cout<<"Comisión del restaurante: "<< plato.comision_restaurante <<"%" <<endl;
     cout<<"ID Categaría: "<< plato.ID_categoria <<endl;
+    cout<<"Estado: "<<plato.estado<<endl; ///  Solo para nosotros, luego borrar esta linea  ///
 }
 
 
@@ -240,8 +241,13 @@ int buscar_plato(int ID,Platos *plato)
     {
         if(plato->ID==ID)
         {
+            if(plato->estado)
+            {
             fclose(p);
             return 0;
+            }
+        fclose(p);
+        return 3;
         }
     }
     fclose(p);
@@ -254,13 +260,11 @@ int modificar_plato()
 {
     int ID;
     cout<<"Ingrese un ID de Plato a modificar: ";
-    while(!(validacion_entero(&ID)))
+    if(!(validacion_ID(&ID)))
     {
-        bool reintentar = menu_reintentar();
-        if(!reintentar)return 0;
-        cout<<"Ingrese un ID de Plato a modificar: ";
+        cout<<"El plato no ha sido modificado"<<endl;
+        return 0;
     }
-
     int resultado = modifica_plato_por_ID(ID);
     mostrar_resultado(resultado);
     if(resultado==-4)resultado=0;
@@ -297,6 +301,11 @@ void mostrar_resultado(int resultado)
             cout<<"Error al abrir el archivo."<<endl;
             anykey();
         }break;
+    case -5:
+        {
+            cout<<"El plato a modificar se encuentra inactivo"<<endl;
+            anykey();
+        }break;
     default:
         {
             cout<<"El valor de venta no puede ser menor al costo de preparación de $ "<<resultado<<endl;
@@ -316,18 +325,22 @@ int modifica_plato_por_ID(int ID)
     }
     while(fread(&plato,sizeof (Platos),1,p))
     {
-        if(plato.ID==ID)break;
+        if(plato.ID==ID)
+        {
+            if(plato.estado)break;
+            return -5;
+        }
     }
     if(feof(p)) return -2;
     fseek(p,ftell(p)-sizeof (Platos),0);
 
     cout<<"Ingrese el nuevo valor de venta: ";
-    bool validado = validacion_flotante(&(plato.valor_venta));
-    if(!validado)return -1;
+
+    if(!validacion_flotante(&(plato.valor_venta)))return -1;
     if(plato.valor_venta < plato.costo_prep)return plato.costo_prep;
 
     cout<<"Ingrese el nuevo tiempo de preparación en minutos: ";
-    validado = validacion_entero(&(plato.tiempo_prep));
+    bool validado = validacion_entero(&(plato.tiempo_prep));
     if(!validado || (plato.tiempo_prep <= 0)) return -1;
 
     if(!(fwrite(&plato,sizeof (Platos),1,p))) return -3;

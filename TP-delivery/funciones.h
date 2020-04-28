@@ -48,7 +48,7 @@ bool menu_reintentar()
     cin.ignore(1000,'\n');
     bool reintentar;
 
-    cout<<"Opción ingresada no válida."<<endl;
+    cout<<"Opción ingresada no válida."<<endl; //ver si es necesario o si se puede eliminar.
     cout<<"¿Desea reintentar?"<<endl<<endl;
 
     cout<<"*-- 1 - SI --*"<<endl;
@@ -70,6 +70,7 @@ bool menu_reintentar()
 
          cout<<"\nIngrese otra opción: ";
     }
+    cls();
 return reintentar;
 }
 
