@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1587407893 source:c:\users\andres\documents\github\tp-delivery\tp-delivery\main.cpp
+1588034007 source:c:\users\andres\documents\github\tp-delivery\tp-delivery\main.cpp
 	<iostream>
 	<clocale>
 	<cstdio>
@@ -12,9 +12,9 @@
 
 1587320335 c:\users\andres\documents\github\tp-delivery\tp-delivery\prototipos.h
 
-1587596433 c:\users\andres\documents\github\tp-delivery\tp-delivery\funciones.h
+1588465235 c:\users\andres\documents\github\tp-delivery\tp-delivery\funciones.h
 
-1587596165 c:\users\andres\documents\github\tp-delivery\tp-delivery\funciones_platos.h
+1588466853 c:\users\andres\documents\github\tp-delivery\tp-delivery\funciones_platos.h
 
 1588033804 source:c:\users\ailen\onedrive\desktop\utn\labo ii\tp-delivery\tp-delivery\main.cpp
 	<iostream>
