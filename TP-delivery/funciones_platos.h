@@ -6,7 +6,9 @@ int menu_platos()
 
     int op;
     cls();
-
+    setColor (BLACK);
+    cout<<"*-    -    -    -    -    -    -    -    -    -    -    -   *"<<endl<<endl;
+    resetColor();
     cout<<"*--------------      MENÚ PLATOS             ---------------*"<<endl;
     cout<<"*-----------------------------------------------------------*"<<endl;
     cout<<"*-------------- 1) NUEVO PLATO               ---------------*"<<endl;
@@ -17,10 +19,15 @@ int menu_platos()
     cout<<"*-------------- 6) ELIMINAR PLATO            ---------------*"<<endl;
     cout<<"*-----------------------------------------------------------*"<<endl;
     cout<<"*-------------- 0) VOLVER AL MENÚ PRINCIPAL  ---------------*"<<endl<<endl;
-
+    setColor (BLACK);
+    cout<<"*-    -    -    -    -    -    -    -    -    -    -    -   *"<<endl<<endl;
+    resetColor();
     cout<<"Ingrese una opción: ";
+    gotoxy(21,16);
+    setColor (BLACK);
     bool validado = validacion_entero (&op);
     if (!validado) op=-1;
+    resetColor();
 return op;
 }
 
@@ -340,6 +347,7 @@ int modifica_plato_por_ID(int ID)
     if(plato.valor_venta < plato.costo_prep)return plato.costo_prep;
 
     cout<<"Ingrese el nuevo tiempo de preparación en minutos: ";
+
     bool validado = validacion_entero(&(plato.tiempo_prep));
     if(!validado || (plato.tiempo_prep <= 0)) return -1;
 

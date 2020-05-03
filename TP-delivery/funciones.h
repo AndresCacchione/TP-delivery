@@ -21,9 +21,16 @@ return true;
 
 int menu_principal()
 {
+
     cls();
     int op;
-
+    system ("color 8E");
+    saveDefaultColor();
+    cout<<endl;
+    cout<<"                     BIENVENIDO A LARA                         \n"<<endl;
+    setColor (BLACK);
+    cout<<"*-    -    -    -    -    -    -    -    -    -    -    -     *"<<endl<<endl;
+    resetColor();
     cout<<"*-----------------      MENÚ PRINCIPAL       -----------------*"<<endl;
     cout<<"*-------------------------------------------------------------*"<<endl;
     cout<<"*-----------------  1) PLATOS                -----------------*"<<endl;
@@ -33,8 +40,15 @@ int menu_principal()
     cout<<"*-----------------  5) CONFIGURACIÓN         -----------------*"<<endl;
     cout<<"*-----------------  ---------------------    -----------------*"<<endl;
     cout<<"*-----------------  0) SALIR DEL PROGRAMA    -----------------*"<<endl<<endl;
+    setColor(BLACK);
+    cout<<"*-    -    -    -    -    -    -    -    -    -    -    -     *"<<endl<<endl;
+    resetColor();
 
     cout<<"\nSeleccione una opción del menú: ";
+    gotoxy(1,30);
+    setColor (BLACK);
+    cout<<"*                      ~SISTEMA LARA~                         *"<<endl;
+    gotoxy(33,19);
     bool validado = validacion_entero(&op);
     if(!validado) op=-1;
     cls();
@@ -48,7 +62,10 @@ bool menu_reintentar()
     cin.ignore(1000,'\n');
     bool reintentar;
 
-    cout<<"Opción ingresada no válida."<<endl; //ver si es necesario o si se puede eliminar.
+    setColor (RED);
+    cout<<"Opción ingresada no válida.\n"<<endl;
+
+    resetColor();
     cout<<"¿Desea reintentar?"<<endl<<endl;
 
     cout<<"*-- 1 - SI --*"<<endl;
@@ -62,7 +79,10 @@ bool menu_reintentar()
          cin.ignore(1000,'\n');
          cls();
 
-         cout<<"Opción no válida."<<endl;
+         setColor (RED);
+         cout<<"Opción no válida.\n"<<endl;
+
+         resetColor();
          cout<<"¿Desea reintentar?"<<endl<<endl;
 
          cout<<"*-- 1 - SI --*"<<endl;
