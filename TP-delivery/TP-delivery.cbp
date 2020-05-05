@@ -33,6 +33,7 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="funciones.h" />
+		<Unit filename="funciones_clientes.h" />
 		<Unit filename="funciones_platos.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="prototipos.h" />

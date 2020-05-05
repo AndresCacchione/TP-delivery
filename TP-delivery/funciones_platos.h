@@ -75,7 +75,6 @@ int op;
             case 0:{}break;
             default:
                 {
-                    cout<<"Opción ingresada no válida."<<endl;
                     if(!(menu_reintentar()))op=0;
                 }break;
         }

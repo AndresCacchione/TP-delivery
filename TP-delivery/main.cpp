@@ -9,7 +9,7 @@ using namespace rlutil;
 #include "prototipos.h"
 #include "funciones.h"
 #include "funciones_platos.h"
-
+#include "funciones_clientes.h"
 
 
 int main()
@@ -28,7 +28,7 @@ int main()
                 }break;
             case 2:
                 {
-                    ///menu_clientes();
+                    seccion_clientes();
                 }break;
             case 3:
                 {
@@ -45,7 +45,6 @@ int main()
             case 0:{}break;
             default:
                 {
-                    ;
                     if(!(menu_reintentar()))op=0;
                 }break;
         }
