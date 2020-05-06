@@ -49,11 +49,18 @@ void seccion_clientes()
         } break;
         case 2:
         {
-            //modificar_cliente();
+            while (!(modificar_cliente()))
+            {
+                if(!(menu_reintentar())) break;
+            };
         } break;
         case 3:
         {
-            //listar_cliente_por_ID();
+
+             while (!(listar_cliente_por_ID()))
+            {
+                if(!(menu_reintentar())) break;
+            };
         } break;
         case 4:
         {
@@ -73,6 +80,162 @@ void seccion_clientes()
 
         anykey();
     }
+}
+
+void mostrar_registro(Clientes cliente)
+{
+    cout<<"ID:";
+    gotoxy(25,3);
+    cout<<cliente.ID<<endl;
+
+    cout<<"Apellido:";
+    gotoxy(25,4);
+    cout<<cliente.apellido<<endl;
+
+    cout<<"Nombre:";
+    gotoxy(25,5);
+    cout<<cliente.nombre<<endl;
+
+    cout<<"Mail:";
+    gotoxy(25,6);
+    cout<<cliente.mail<<endl;
+
+    cout<<"Domicilio:";
+    gotoxy(25,7);
+    cout<<cliente.domicilio<<endl;
+
+    cout<<"Código Postal:";
+    gotoxy(25,8);
+    cout<<cliente.codigo_postal<<endl;
+
+    cout<<"Fecha de Nacimiento:";
+    gotoxy(25,9);
+    cout<<cliente.fecha.dia<<"/"<<cliente.fecha.mes<<"/"<<cliente.fecha.anio<<endl;
+
+    cout<<"Estado:";
+    gotoxy(25,10);
+    cout<<cliente.estado<<endl;
+
+    setColor (BLACK);
+    cout<<"*--------------------------------------------------------*"<<endl;
+    resetColor();
+}
+
+bool listar_cliente_por_ID()
+{
+ Clientes cliente;
+ int ID,pos;
+
+ cls();
+ cout<<"Ingrese el ID del Cliente buscado: ";
+ if (!(validacion_entero(&ID)))return false;
+ cout<<endl;
+
+ pos= buscar_cliente_por_ID(ID);
+ if (pos<0) return false;
+
+ FILE *p;
+ p= fopen(archivo_clientes, "rb");
+ if (p==NULL)
+ {
+     cout<<"El archivo no se ha podido abrir.";
+     return false;
+ }
+ fseek(p, pos*sizeof (Clientes),0);
+ fread(&cliente, sizeof (Clientes),1,p);
+
+fclose(p);
+mostrar_registro(cliente);
+anykey();
+return true;
+}
+
+int buscar_cliente_por_ID(int ID)
+{
+    Clientes cliente;
+    FILE *p;
+    p= fopen(archivo_clientes, "rb");
+
+    if (p == NULL)
+    {
+        cout<<" No pudo abrir el archivo.";
+        anykey();
+        return -2;
+    }
+
+    while (fread(&cliente, sizeof (Clientes), 1, p))
+    {
+        if (ID == cliente.ID && cliente.estado)
+        {
+            fseek(p,(ftell (p)-sizeof (Clientes)),0);
+            return ftell(p)/sizeof (Clientes);
+        }
+    }
+
+fclose(p);
+cout<<"El cliente no existe o está dado de baja.";
+anykey();
+return -1;
+}
+
+bool modificar_domicilio (int ID, int pos)
+{
+    Clientes cliente;
+    FILE *p;
+    p=fopen(archivo_clientes, "rb+");
+
+    if (p==NULL)
+    {
+        cout<<" No pudo abrir el archivo.";
+        anykey();
+        return false;
+    }
+
+    fseek(p,pos*sizeof(Clientes),0);
+    fread(&cliente, sizeof (Clientes),1, p);
+    cout<<"El domicilio ha modificar es: "<<cliente.domicilio<<endl;
+    cout<<"Ingrese el nuevo domicilio: ";
+    gotoxy(31,4);
+    cin.ignore();
+    cin.getline (cliente.domicilio,100);
+    if (!(validacion_cadena(cliente.domicilio)))
+    {
+        cout<<"El domicilio no es valido.";
+        anykey();
+        return false;
+    }
+    else
+    {
+        fseek(p,pos*sizeof (Clientes),0);
+        if (!(fwrite(&cliente, sizeof(Clientes),1,p)))
+        {
+            cout<<"No se ha podido guardar la dirección del cliente.";
+            anykey();
+            return false;
+        }
+    }
+    fclose(p);
+    cout<<"\nEl domicilio ha sido modificado exitosamente.";
+    anykey();
+    return true;
+}
+
+bool modificar_cliente()
+{
+    int ID, pos;
+
+    cls();
+    cout<<"Ingrese el ID del cliente a modificar: ";
+    if (!validacion_entero(&ID))
+    {
+        cout<<"Tipo de dato incorrecto.";
+        anykey();
+        return false;
+    }
+    cout<<endl;
+    pos= buscar_cliente_por_ID(ID);
+    if (pos <0)return false;
+    return modificar_domicilio(ID,pos);
 }
 
 bool ingresar_cliente()

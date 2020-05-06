@@ -30,10 +30,11 @@ bool validacion_mail(char *);
 bool validacion_caracteres_antes_y_despues_arroba(char *);
 bool validacion_fecha(Fechas *);
 bool cargar_cliente(Clientes *);
-
-
-
-
+bool modificar_cliente ();
+int buscar_cliente_por_ID(int);
+bool modificar_domicilio (int, int);
+bool listar_cliente_por_ID();
+void mostrar_registro(Clientes);
 
 
 
