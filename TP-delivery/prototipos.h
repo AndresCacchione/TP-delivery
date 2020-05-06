@@ -35,8 +35,8 @@ int buscar_cliente_por_ID(int);
 bool modificar_domicilio (int, int);
 bool listar_cliente_por_ID();
 void mostrar_registro(Clientes);
-
-
+bool listar_todos_los_clientes();
+void ordenar_por_apellido(Clientes *, unsigned int);
 
 
 

@@ -64,7 +64,7 @@ void seccion_clientes()
         } break;
         case 4:
         {
-            //listar_todos_los_clientes();
+            listar_todos_los_clientes();
         } break;
         case 5:
         {
@@ -82,38 +82,91 @@ void seccion_clientes()
     }
 }
 
+bool listar_todos_los_clientes()
+{
+    cls();
+    unsigned int tam=tamanio_archivo(archivo_clientes,sizeof (Clientes));
+    Clientes *Todos_los_clientes;
+
+    Todos_los_clientes = (Clientes *) malloc(tam*sizeof(Clientes));
+    if(Todos_los_clientes==NULL)
+    {
+        cout<<"Ejecución interrumpida por falta de memoria."<<endl;
+        return false;
+    }
+
+    FILE *p;
+    p=fopen(archivo_clientes, "rb");
+    if (p==NULL)
+    {
+        cout<<"No se ha podido abrir la base de datos."<<endl;
+        return false;
+    }
+
+    if((fread(Todos_los_clientes,sizeof (Clientes),tam,p)) != tam)
+    {
+        cout<<"Error en la lectura de los registros."<<endl;
+        return false;
+    }
+    fclose(p);
+
+    ordenar_por_apellido(Todos_los_clientes, tam);
+
+    for(unsigned int i=0;i<tam;i++)
+    {
+
+        if(Todos_los_clientes[i].estado) mostrar_registro(Todos_los_clientes[i]);
+    }
+
+free(Todos_los_clientes);
+return true;
+}
+
+void ordenar_por_apellido(Clientes *cliente, unsigned int tam)
+{
+    Clientes aux;
+    int pos_menor=0;
+    for(unsigned int i=0; i<tam-1;i++)
+    {
+        pos_menor=i;
+
+        for(unsigned int j=i+1;j<tam;j++)
+        {
+            if((strcmp(cliente[j].apellido,cliente[pos_menor].apellido))<0)
+            {
+                pos_menor=j;
+            }
+        }
+        aux=cliente[pos_menor];
+        cliente[pos_menor]=cliente[i];
+        cliente[i]=aux;
+    }
+}
+
 void mostrar_registro(Clientes cliente)
 {
-    cout<<"ID:";
-    gotoxy(25,3);
+    cout<<"ID:                  ";
     cout<<cliente.ID<<endl;
 
-    cout<<"Apellido:";
-    gotoxy(25,4);
+    cout<<"Apellido:            ";
     cout<<cliente.apellido<<endl;
 
-    cout<<"Nombre:";
-    gotoxy(25,5);
+    cout<<"Nombre:              ";
     cout<<cliente.nombre<<endl;
 
-    cout<<"Mail:";
-    gotoxy(25,6);
+    cout<<"Mail:                ";
     cout<<cliente.mail<<endl;
 
-    cout<<"Domicilio:";
-    gotoxy(25,7);
+    cout<<"Domicilio:           ";
     cout<<cliente.domicilio<<endl;
 
-    cout<<"Código Postal:";
-    gotoxy(25,8);
+    cout<<"Código Postal:       ";
     cout<<cliente.codigo_postal<<endl;
 
-    cout<<"Fecha de Nacimiento:";
-    gotoxy(25,9);
+    cout<<"Fecha de Nacimiento: ";
     cout<<cliente.fecha.dia<<"/"<<cliente.fecha.mes<<"/"<<cliente.fecha.anio<<endl;
 
-    cout<<"Estado:";
-    gotoxy(25,10);
+    cout<<"Estado:              ";
     cout<<cliente.estado<<endl;
 
     setColor (BLACK);
