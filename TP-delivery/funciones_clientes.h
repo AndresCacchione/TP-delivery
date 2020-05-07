@@ -19,7 +19,11 @@ int opcion;
     cout<<"*-------------- 0) VOLVER AL MENÚ PRINCIPAL  ---------------*"<<endl<<endl;
     setColor (BLACK);
     cout<<"*-    -    -    -    -    -    -    -    -    -    -    -   *"<<endl<<endl;
+
+    gotoxy(1,30);
+    cout<<"*                      ~SISTEMA LARA~                         *"<<endl;
     resetColor();
+    gotoxy(1,15);
     cout<<"Ingrese una opción: ";
     gotoxy(21,15);
     setColor (BLACK);
@@ -68,7 +72,10 @@ void seccion_clientes()
         } break;
         case 5:
         {
-            //eliminar_cliente();
+            while (!(eliminar_cliente()))
+            {
+                if(!(menu_reintentar())) break;
+            };
         } break;
         case 0:
         {} break;
@@ -80,6 +87,41 @@ void seccion_clientes()
 
         anykey();
     }
+}
+
+bool eliminar_cliente()
+{
+    int ID, pos;
+    Clientes cliente;
+
+    cls();
+    setColor(BLUE);
+    cout<<"A qué cliente matamos, jefe? Diga un ID -.- : ";
+    resetColor();
+    if (!(validacion_entero(&ID))) return false;
+
+    pos = buscar_cliente_por_ID(ID);
+    if(pos<0) return false;
+
+    FILE*p;
+    p=fopen(archivo_clientes, "rb+");
+    if(p==NULL) return false;
+
+    fread(&cliente, sizeof (Clientes), 1, p);
+    cliente.estado=false;
+
+    fseek(p,pos*sizeof(Clientes),0);
+
+    if(!(fwrite(&cliente, sizeof(Clientes), 1, p)))
+    {
+        cout<<"No pudimos escribir, somos analfabetos :C "<< endl;
+        return false;
+    }
+    fclose(p);
+    setColor(RED);
+    cout<<"Cliente eliminado con éxito :) al fondo del rio .-."<<endl;
+    resetColor();
+return true;
 }
 
 bool listar_todos_los_clientes()

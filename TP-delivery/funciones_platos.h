@@ -21,7 +21,10 @@ int menu_platos()
     cout<<"*-------------- 0) VOLVER AL MENÚ PRINCIPAL  ---------------*"<<endl<<endl;
     setColor (BLACK);
     cout<<"*-    -    -    -    -    -    -    -    -    -    -    -   *"<<endl<<endl;
+    gotoxy(1,30);
+    cout<<"*                      ~SISTEMA LARA~                         *"<<endl;
     resetColor();
+    gotoxy(1,16);
     cout<<"Ingrese una opción: ";
     gotoxy(21,16);
     setColor (BLACK);
