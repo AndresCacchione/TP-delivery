@@ -10,6 +10,7 @@ using namespace rlutil;
 #include "funciones.h"
 #include "funciones_platos.h"
 #include "funciones_clientes.h"
+#include "funciones_pedidos.h"
 
 
 int main()
@@ -32,7 +33,7 @@ int main()
                 }break;
             case 3:
                 {
-                    ///menu_pedidos();
+                    seccion_pedidos();
                 }break;
             case 4:
                 {

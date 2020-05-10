@@ -372,7 +372,6 @@ bool cargar_cliente(Clientes *cliente)
     cout<<"Código Postal: "<<endl;
     cout<<"Fecha de nacimiento: "<<endl;
 
-    ///Hacer el gotoxys ///
     gotoxy(23,1);
     cout<<cliente->ID<<endl;
 

@@ -1,13 +1,52 @@
 #ifndef PROTOTIPOS_H_INCLUDED
 #define PROTOTIPOS_H_INCLUDED
 
-///PROTOTIPO CLIENTES///
-/////-------------------------------///////
-
 struct Fechas
 {
     int dia,mes,anio;
 };
+const char *ARCHIVO_PEDIDOS={"pedidos.dat"};
+
+///PROTOTIPO PEDIDOS///
+////----------------------------------------------////
+struct Pedidos
+{
+    int ID_pedido;
+    int ID_cliente;
+    int ID_plato;
+    int cantidad;
+    float precio_unitario;
+    Fechas fecha;
+    float valoracion;
+    int estado;
+};
+
+void seccion_pedidos();
+int menu_pedidos();
+bool nuevo_pedido();
+bool cargar_pedido(Pedidos *);
+bool guardar_pedido(Pedidos);
+void listar_ID_nombre_platos();
+float buscar_precio_plato(int);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///PROTOTIPO CLIENTES///
+/////-------------------------------///////
 
 struct Clientes
 {
@@ -65,7 +104,7 @@ bool validacion_entero(int *);
 void nuevo_plato();
 bool cargar_registro(Platos *);
 bool grabar_registro(Platos);
-bool ID_unico(int);
+bool ID_Plato_unico(int);
 const char archivo_platos[]="Platos.dat";
 bool validacion_cadena(char *);
 bool validacion_flotante(float *);
@@ -74,13 +113,15 @@ int modifica_plato_por_ID(int);
 void mostrar_resultado(int);
 void listar_plato_por_ID();
 bool validacion_ID(int *);
-int buscar_plato(int, Platos *);
+int buscar_plato(int ,Platos *);
 void mostrar_plato(struct Platos);
 void listar_platos_por_restaurant();
 int mostrar_platos_por_restaurant(int, Platos *);
 void listar_todos_los_platos();
 int eliminar_plato();
 int eliminando_plato(int);
+int index_plato(int);
+
 
 
 
