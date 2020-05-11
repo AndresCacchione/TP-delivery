@@ -28,11 +28,11 @@ bool cargar_pedido(Pedidos *);
 bool guardar_pedido(Pedidos);
 void listar_ID_nombre_platos();
 float buscar_precio_plato(int);
-
-
-
-
-
+void mostrar_pedido(Pedidos *, int);
+void mostrar_estado(int);
+bool modificar_pedido();
+bool modificar_estado_pedido(int);
+int buscar_pedido(int);
 
 
 
