@@ -55,7 +55,7 @@ bool crear_backup()
         return true;
     }
 
-    if((!(backup_platos)) || (!(backup_clientes)) || (!(backup_pedidos)))
+    if((!(backup_platos())) || (!(backup_clientes())) || (!(backup_pedidos())))
     {
         cout<<"Error: el Backup no se ha podido realizar."<<endl;
         return false;
