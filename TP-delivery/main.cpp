@@ -11,7 +11,7 @@ using namespace rlutil;
 #include "funciones_platos.h"
 #include "funciones_clientes.h"
 #include "funciones_pedidos.h"
-
+#include "funciones_configuracion.h"
 
 int main()
 {
@@ -41,7 +41,7 @@ int main()
                 }break;
             case 5:
                 {
-                    ///menu_configuracion();
+                    seccion_configuracion();
                 }break;
             case 0:{}break;
             default:

@@ -5,10 +5,24 @@ struct Fechas
 {
     int dia,mes,anio;
 };
-const char *ARCHIVO_PEDIDOS={"pedidos.dat"};
+
+///PROTOTIPO CONFIGURACION///
+////----------------------------------------------////
+
+void seccion_configuracion();
+int menu_configuracion();
+bool validacion_booleano(bool *);
+bool crear_backup();
+bool backup_platos();
+bool backup_clientes();
+bool backup_pedidos();
+const char *ARCHIVO_PEDIDOS_BACKUP={"pedidos.bkp"};
+const char *ARCHIVO_PLATOS_BACKUP={"Platos.bkp"};
+const char *ARCHIVO_CLIENTES_BACKUP={"Clientes.bkp"};
 
 ///PROTOTIPO PEDIDOS///
 ////----------------------------------------------////
+
 struct Pedidos
 {
     int ID_pedido;
@@ -21,6 +35,7 @@ struct Pedidos
     int estado;
 };
 
+const char *ARCHIVO_PEDIDOS={"pedidos.dat"};
 void seccion_pedidos();
 int menu_pedidos();
 bool nuevo_pedido();
@@ -36,15 +51,6 @@ int buscar_pedido(int);
 bool listar_pedido_por_ID();
 bool leer_pedido (Pedidos *, int);
 void listar_todos_pedidos();
-
-
-
-
-
-
-
-
-
 
 ///PROTOTIPO CLIENTES///
 /////-------------------------------///////
@@ -78,8 +84,6 @@ void mostrar_registro(Clientes);
 bool listar_todos_los_clientes();
 void ordenar_por_apellido(Clientes *, unsigned int);
 bool eliminar_cliente();
-
-
 
 /////-------------------------------///////
 /// PROTOTIPO PLATOS ////
@@ -122,8 +126,5 @@ void listar_todos_los_platos();
 int eliminar_plato();
 int eliminando_plato(int);
 int index_plato(int);
-
-
-
 
 #endif // PROTOTIPOS_H_INCLUDED

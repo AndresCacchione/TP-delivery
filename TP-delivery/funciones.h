@@ -94,6 +94,20 @@ bool menu_reintentar()
 return reintentar;
 }
 
+bool validacion_booleano(bool *booleano)
+{
+    bool validado;
+    if(cin>>*booleano)
+        {
+            validado=true;
+        }
+    else
+        {
+            validado=false;
+        }
+return validado;
+}
+
 bool validacion_entero(int *entero)
 {
     bool validado;
