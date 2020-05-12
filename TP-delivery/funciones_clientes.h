@@ -96,7 +96,7 @@ bool eliminar_cliente()
 
     cls();
     setColor(BLUE);
-    cout<<"A qué cliente matamos, jefe? Diga un ID -.- : ";
+    cout<<"Ingrese el ID a eliminar: ";
     resetColor();
     if (!(validacion_entero(&ID))) return false;
 
@@ -114,12 +114,12 @@ bool eliminar_cliente()
 
     if(!(fwrite(&cliente, sizeof(Clientes), 1, p)))
     {
-        cout<<"No pudimos escribir, somos analfabetos :C "<< endl;
+        cout<<"No se pudo escribir el archivo. "<< endl;
         return false;
     }
     fclose(p);
     setColor(RED);
-    cout<<"Cliente eliminado con éxito :) al fondo del rio .-."<<endl;
+    cout<<"Cliente eliminado con éxito :)"<<endl;
     resetColor();
 return true;
 }

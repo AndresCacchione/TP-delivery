@@ -29,14 +29,14 @@ void seccion_pedidos()
         } break;
         case 3:
         {
-//                    while(listar_pedido_por_ID())
-//                    {
-//                        if(!(menu_reintentar()))break;
-//                    }
+                    while(!(listar_pedido_por_ID()))
+                    {
+                        if(!(menu_reintentar()))break;
+                    }
         } break;
         case 4:
         {
-            ///listar_todos_pedidos();
+            listar_todos_pedidos();
         } break;
 
         case 0:
@@ -53,6 +53,61 @@ void seccion_pedidos()
     }
     while(op!=0);
 }
+
+void listar_todos_pedidos()
+{
+  Pedidos pedido;
+  int tam;
+  tam=tamanio_archivo(ARCHIVO_PEDIDOS,sizeof (Pedidos));
+
+  for (int i=0; i<tam;i++)
+  {
+      if (!(leer_pedido(&pedido,i)))return;
+      mostrar_pedido(&pedido,i);
+  }
+
+}
+
+bool listar_pedido_por_ID()
+{
+  Pedidos pedido;
+  int ID;
+  int pos;
+  cout<<"Ingrese el ID del pedido a listar: ";
+  if (!(validacion_ID(&ID)))
+  {
+      cout<<"ID no valido. Debe ser un numero entero positivo."<<endl;
+      return false;
+  }
+  pos= buscar_pedido(ID);
+  if (pos<0)
+  {
+      cout<<"El ID del pedido no fue cargado."<<endl;
+      return false;
+  }
+  if (!(leer_pedido (&pedido,pos)))return false;
+  cls();
+  mostrar_pedido(&pedido,0);
+
+return true;
+}
+
+bool leer_pedido (Pedidos *pedido, int pos)
+{
+   FILE *p;
+   p=fopen(ARCHIVO_PEDIDOS, "rb");
+   if (p==NULL)
+   {
+       cout<<"El archivo no se ha podido leer."<<endl;
+       return false;
+   }
+   fseek(p,pos*sizeof (Pedidos),0);
+   fread(pedido, sizeof (Pedidos),1,p);
+
+fclose(p);
+return true;
+}
+
 
 bool modificar_pedido()
 {
@@ -154,9 +209,9 @@ bool guardar_pedido(Pedidos pedido)
 
 void mostrar_pedido(Pedidos *pedido, int cant)
 {
-    cls();
     if (pedido->ID_pedido !=0)
     {
+        gotoxy(1,1+9*cant);
         cout<<"ID PEDIDO: ";
         gotoxy(30,1+9*cant);
         cout<<pedido->ID_pedido<<endl;
@@ -283,6 +338,7 @@ bool cargar_pedido(Pedidos *pedido)
         return false;
     }
 
+    cls();
     mostrar_pedido(pedido,0);
 
     gotoxy(1,4);
@@ -321,6 +377,7 @@ bool cargar_pedido(Pedidos *pedido)
     if(!(validacion_fecha(&(pedido->fecha))))
         return false;
 
+    cls();
     mostrar_pedido(pedido,0);
 
     gotoxy(1,7);

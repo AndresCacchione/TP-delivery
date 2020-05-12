@@ -33,8 +33,9 @@ void mostrar_estado(int);
 bool modificar_pedido();
 bool modificar_estado_pedido(int);
 int buscar_pedido(int);
-
-
+bool listar_pedido_por_ID();
+bool leer_pedido (Pedidos *, int);
+void listar_todos_pedidos();
 
 
 
