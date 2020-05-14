@@ -19,7 +19,7 @@
 
 1589248802 c:\users\andres\documents\github\tp-delivery\tp-delivery\funciones_platos.h
 
-1589244264 source:c:\users\ailen\onedrive\desktop\utn\labo ii\tp-delivery\tp-delivery\main.cpp
+1589414506 source:c:\users\ailen\onedrive\desktop\utn\labo ii\tp-delivery\tp-delivery\main.cpp
 	<iostream>
 	<clocale>
 	<cstdio>
@@ -31,20 +31,23 @@
 	"funciones_platos.h"
 	"funciones_clientes.h"
 	"funciones_pedidos.h"
+	"funciones_configuracion.h"
 
-1589246856 c:\users\ailen\onedrive\desktop\utn\labo ii\tp-delivery\tp-delivery\prototipos.h
+1589410770 c:\users\ailen\onedrive\desktop\utn\labo ii\tp-delivery\tp-delivery\prototipos.h
 
-1589244264 c:\users\ailen\onedrive\desktop\utn\labo ii\tp-delivery\tp-delivery\funciones.h
+1589414506 c:\users\ailen\onedrive\desktop\utn\labo ii\tp-delivery\tp-delivery\funciones.h
 
-1589244264 c:\users\ailen\onedrive\desktop\utn\labo ii\tp-delivery\tp-delivery\funciones_platos.h
+1589414828 c:\users\ailen\onedrive\desktop\utn\labo ii\tp-delivery\tp-delivery\funciones_platos.h
 
 1589248802 c:\users\andres\documents\github\tp-delivery\tp-delivery\funciones_clientes.h
 
-1589248435 c:\users\ailen\onedrive\desktop\utn\labo ii\tp-delivery\tp-delivery\funciones_clientes.h
+1589406224 c:\users\ailen\onedrive\desktop\utn\labo ii\tp-delivery\tp-delivery\funciones_clientes.h
 
-1589248219 c:\users\ailen\onedrive\desktop\utn\labo ii\tp-delivery\tp-delivery\funciones_pedidos.h
+1589406224 c:\users\ailen\onedrive\desktop\utn\labo ii\tp-delivery\tp-delivery\funciones_pedidos.h
 
 1589248802 c:\users\andres\documents\github\tp-delivery\tp-delivery\funciones_pedidos.h
 
 1589257539 c:\users\andres\documents\github\tp-delivery\tp-delivery\funciones_configuracion.h
+
+1589413240 c:\users\ailen\onedrive\desktop\utn\labo ii\tp-delivery\tp-delivery\funciones_configuracion.h
 

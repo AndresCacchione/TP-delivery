@@ -15,6 +15,9 @@ using namespace rlutil;
 
 int main()
 {
+    setBackgroundColor(GREY);
+    setColor(YELLOW);
+    saveDefaultColor();
     setlocale(LC_ALL,"Spanish");
     int op;
 
@@ -49,7 +52,6 @@ int main()
                     if(!(menu_reintentar()))op=0;
                 }break;
         }
-        anykey();
 
     }while(op!=0);
 

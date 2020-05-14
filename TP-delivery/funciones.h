@@ -24,8 +24,7 @@ int menu_principal()
 
     cls();
     int op;
-    system ("color 8E");
-    saveDefaultColor();
+
     cout<<endl;
     cout<<"                     BIENVENIDO A LARA                         \n"<<endl;
     setColor (BLACK);

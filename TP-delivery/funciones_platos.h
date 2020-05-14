@@ -35,7 +35,6 @@ int menu_platos()
     return op;
 }
 
-
 void seccion_platos()
 {
     int op;
@@ -94,8 +93,7 @@ void seccion_platos()
         }
         break;
         }
-        anykey();
-
+    anykey();
     }
     while(op!=0);
 }
@@ -304,6 +302,7 @@ int modificar_plato()
     mostrar_resultado(resultado);
     if(resultado==-4)
         resultado=0;
+
     return resultado;
 }
 

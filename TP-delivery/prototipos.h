@@ -19,6 +19,10 @@ bool backup_pedidos();
 const char *ARCHIVO_PEDIDOS_BACKUP={"pedidos.bkp"};
 const char *ARCHIVO_PLATOS_BACKUP={"Platos.bkp"};
 const char *ARCHIVO_CLIENTES_BACKUP={"Clientes.bkp"};
+bool restaurar_backup();
+bool restaurar_platos();
+bool restaurar_clientes();
+bool restaurar_pedidos();
 
 ///PROTOTIPO PEDIDOS///
 ////----------------------------------------------////
