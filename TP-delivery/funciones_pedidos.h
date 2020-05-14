@@ -117,7 +117,7 @@ bool modificar_pedido()
 {
     int ID;
     cout<<"Ingrese el ID de pedido a modificar: ";
-    if(!(validacion_ID(&ID)))return false;
+    if(!(validacion_ID(&ID)))return true;
 
     int pos = buscar_pedido(ID);
     if(pos<0)
@@ -159,7 +159,7 @@ bool modificar_estado_pedido(int pos)
     mostrar_estado(pedido.estado);
 
     cout<<"\nIngrese el nuevo estado del pedido: ";
-    if(!(validacion_entero(&(pedido.estado))))
+    if(!((validacion_entero(&(pedido.estado))) && pedido.estado>0 && pedido.estado<4))
     {
         cout<<"El estado cargado no es válido. Debe ser 1 (En curso), 2 (completado), o 3 (cancelado)."<<endl;
         return false;
@@ -348,7 +348,7 @@ bool cargar_pedido(Pedidos *pedido)
     gotoxy(1,4);
     cout<<"CANTIDAD: ";
     gotoxy(30,4);
-    if (!(validacion_ID(&(pedido->cantidad))))
+    if (!(validacion_entero(&(pedido->cantidad)) && (pedido->cantidad>0)))
         return false;
 
     pedido->precio_unitario=buscar_precio_plato(pos_plato);
@@ -358,23 +358,23 @@ bool cargar_pedido(Pedidos *pedido)
     gotoxy(1,5);
     cout<<"DÍA DEL PEDIDO: ";
     gotoxy(30,5);
-    if(!(validacion_ID(&(pedido->fecha.dia))))
+    if(!(validacion_entero(&(pedido->fecha.dia))))
         return false;
-    if(pedido->fecha.dia>31)
+    if(pedido->fecha.dia>31 || pedido->fecha.dia<1)
         return false;
 
     gotoxy(1,6);
     cout<<"MES: ";
     gotoxy(30,6);
-    if(!(validacion_ID(&(pedido->fecha.mes))))
+    if(!(validacion_entero(&(pedido->fecha.mes))))
         return false;
-    if(pedido->fecha.mes>12)
+    if(pedido->fecha.mes>12 || pedido->fecha.mes<1)
         return false;
 
     gotoxy(1,7);
     cout<<"AÑO: ";
     gotoxy(30,7);
-    if(!(validacion_ID(&(pedido->fecha.anio))))
+    if(!(validacion_entero(&(pedido->fecha.anio))))
         return false;
     if(pedido->fecha.anio<1900)
         return false;

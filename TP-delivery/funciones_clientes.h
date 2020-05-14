@@ -263,7 +263,9 @@ int buscar_cliente_por_ID(int ID)
         if (ID == cliente.ID && cliente.estado)
         {
             fseek(p,(ftell (p)-sizeof (Clientes)),0);
-            return ftell(p)/sizeof (Clientes);
+            int ret = ftell(p)/sizeof (Clientes);
+            fclose(p);
+            return ret;
         }
     }
 
@@ -288,7 +290,7 @@ bool modificar_domicilio (int pos)
 
     fseek(p,pos*sizeof(Clientes),0);
     fread(&cliente, sizeof (Clientes),1, p);
-    cout<<"El domicilio ha modificar es: "<<cliente.domicilio<<endl;
+    cout<<"El domicilio a modificar es: "<<cliente.domicilio<<endl;
     cout<<"Ingrese el nuevo domicilio: ";
     gotoxy(31,4);
     cin.ignore();
