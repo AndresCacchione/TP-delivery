@@ -21,7 +21,6 @@ return true;
 
 int menu_principal()
 {
-
     cls();
     int op;
 

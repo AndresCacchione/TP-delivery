@@ -81,7 +81,7 @@ void seccion_clientes()
         {} break;
         default:
         {
-            if(!menu_reintentar()) return;
+            if(!(menu_reintentar())) return;
         }break;
         }
 
@@ -104,7 +104,7 @@ bool eliminar_cliente()
     if(pos<0) return false;
 
     FILE*p;
-    p=fopen(archivo_clientes, "rb+");
+    p=fopen(ARCHIVO_CLIENTES, "rb+");
     if(p==NULL) return false;
 
     fread(&cliente, sizeof (Clientes), 1, p);
@@ -127,7 +127,7 @@ return true;
 bool listar_todos_los_clientes()
 {
     cls();
-    unsigned int tam=tamanio_archivo(archivo_clientes,sizeof (Clientes));
+    unsigned int tam=tamanio_archivo(ARCHIVO_CLIENTES,sizeof (Clientes));
     Clientes *Todos_los_clientes;
 
     Todos_los_clientes = (Clientes *) malloc(tam*sizeof(Clientes));
@@ -138,7 +138,7 @@ bool listar_todos_los_clientes()
     }
 
     FILE *p;
-    p=fopen(archivo_clientes, "rb");
+    p=fopen(ARCHIVO_CLIENTES, "rb");
     if (p==NULL)
     {
         cout<<"No se ha podido abrir la base de datos."<<endl;
@@ -230,7 +230,7 @@ bool listar_cliente_por_ID()
  if (pos<0) return false;
 
  FILE *p;
- p= fopen(archivo_clientes, "rb");
+ p= fopen(ARCHIVO_CLIENTES, "rb");
  if (p==NULL)
  {
      cout<<"El archivo no se ha podido abrir.";
@@ -249,7 +249,7 @@ int buscar_cliente_por_ID(int ID)
 {
     Clientes cliente;
     FILE *p;
-    p= fopen(archivo_clientes, "rb");
+    p= fopen(ARCHIVO_CLIENTES, "rb");
 
     if (p == NULL)
     {
@@ -273,11 +273,11 @@ anykey();
 return -1;
 }
 
-bool modificar_domicilio (int ID, int pos)
+bool modificar_domicilio (int pos)
 {
     Clientes cliente;
     FILE *p;
-    p=fopen(archivo_clientes, "rb+");
+    p=fopen(ARCHIVO_CLIENTES, "rb+");
 
     if (p==NULL)
     {
@@ -330,7 +330,7 @@ bool modificar_cliente()
     cout<<endl;
     pos= buscar_cliente_por_ID(ID);
     if (pos <0)return false;
-    return modificar_domicilio(ID,pos);
+    return modificar_domicilio(pos);
 }
 
 bool ingresar_cliente()
@@ -339,7 +339,7 @@ bool ingresar_cliente()
     if(!cargar_cliente(&cliente)) return false;
 
     FILE *p;
-    p=fopen(archivo_clientes,"ab");
+    p=fopen(ARCHIVO_CLIENTES,"ab");
     if(p==NULL)
     {
         cout<<"El archivo no se ha podido abrir."<<endl;
@@ -361,7 +361,7 @@ return true;
 
 bool cargar_cliente(Clientes *cliente)
 {
-    cliente->ID= 1+tamanio_archivo(archivo_clientes,sizeof(Clientes));
+    cliente->ID= 1+tamanio_archivo(ARCHIVO_CLIENTES,sizeof(Clientes));
     cls();
 
     cout<<"ID de cliente:"<<endl;

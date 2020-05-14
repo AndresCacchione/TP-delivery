@@ -53,7 +53,7 @@ bool modificar_pedido();
 bool modificar_estado_pedido(int);
 int buscar_pedido(int);
 bool listar_pedido_por_ID();
-bool leer_pedido (Pedidos *, int);
+struct Pedidos leer_pedido (int *);
 void listar_todos_pedidos();
 
 ///PROTOTIPO CLIENTES///
@@ -75,14 +75,14 @@ long tamanio_archivo(const char *,int);
 void seccion_clientes();
 int menu_clientes();
 bool ingresar_cliente();
-const char *archivo_clientes="Clientes.dat";
+const char *ARCHIVO_CLIENTES="Clientes.dat";
 bool validacion_mail(char *);
 bool validacion_caracteres_antes_y_despues_arroba(char *);
 bool validacion_fecha(Fechas *);
 bool cargar_cliente(Clientes *);
 bool modificar_cliente ();
 int buscar_cliente_por_ID(int);
-bool modificar_domicilio (int, int);
+bool modificar_domicilio (int);
 bool listar_cliente_por_ID();
 void mostrar_registro(Clientes);
 bool listar_todos_los_clientes();

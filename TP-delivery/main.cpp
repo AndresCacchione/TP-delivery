@@ -15,7 +15,7 @@ using namespace rlutil;
 
 int main()
 {
-    setBackgroundColor(GREY);
+    setBackgroundColor(DARKGREY);
     setColor(YELLOW);
     saveDefaultColor();
     setlocale(LC_ALL,"Spanish");

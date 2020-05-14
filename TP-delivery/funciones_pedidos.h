@@ -62,7 +62,8 @@ void listar_todos_pedidos()
 
   for (int i=0; i<tam;i++)
   {
-      if (!(leer_pedido(&pedido,i)))return;
+      int pos=i;
+      pedido = leer_pedido(&pos);
       mostrar_pedido(&pedido,i);
   }
 
@@ -70,7 +71,6 @@ void listar_todos_pedidos()
 
 bool listar_pedido_por_ID()
 {
-  Pedidos pedido;
   int ID;
   int pos;
   cout<<"Ingrese el ID del pedido a listar: ";
@@ -85,27 +85,31 @@ bool listar_pedido_por_ID()
       cout<<"El ID del pedido no fue cargado."<<endl;
       return false;
   }
-  if (!(leer_pedido (&pedido,pos)))return false;
+  Pedidos pedido = leer_pedido(&pos);
+  if(pos==-1) return false;
+
   cls();
   mostrar_pedido(&pedido,0);
 
 return true;
 }
 
-bool leer_pedido (Pedidos *pedido, int pos)
+struct Pedidos leer_pedido (int *pos)
 {
+   Pedidos pedido;
    FILE *p;
    p=fopen(ARCHIVO_PEDIDOS, "rb");
    if (p==NULL)
    {
        cout<<"El archivo no se ha podido leer."<<endl;
-       return false;
+       *pos=-1;
+       return pedido;
    }
-   fseek(p,pos*sizeof (Pedidos),0);
-   fread(pedido, sizeof (Pedidos),1,p);
+   fseek(p,(*pos)*sizeof (Pedidos),0);
+   fread(&pedido, sizeof (Pedidos),1,p);
 
 fclose(p);
-return true;
+return pedido;
 }
 
 

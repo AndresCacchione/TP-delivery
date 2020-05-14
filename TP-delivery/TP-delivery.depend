@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1589249320 source:c:\users\andres\documents\github\tp-delivery\tp-delivery\main.cpp
+1589418075 source:c:\users\andres\documents\github\tp-delivery\tp-delivery\main.cpp
 	<iostream>
 	<clocale>
 	<cstdio>
@@ -13,11 +13,11 @@
 	"funciones_pedidos.h"
 	"funciones_configuracion.h"
 
-1589251851 c:\users\andres\documents\github\tp-delivery\tp-delivery\prototipos.h
+1589417591 c:\users\andres\documents\github\tp-delivery\tp-delivery\prototipos.h
 
-1589250415 c:\users\andres\documents\github\tp-delivery\tp-delivery\funciones.h
+1589415551 c:\users\andres\documents\github\tp-delivery\tp-delivery\funciones.h
 
-1589248802 c:\users\andres\documents\github\tp-delivery\tp-delivery\funciones_platos.h
+1589415512 c:\users\andres\documents\github\tp-delivery\tp-delivery\funciones_platos.h
 
 1589414506 source:c:\users\ailen\onedrive\desktop\utn\labo ii\tp-delivery\tp-delivery\main.cpp
 	<iostream>
@@ -39,15 +39,15 @@
 
 1589414828 c:\users\ailen\onedrive\desktop\utn\labo ii\tp-delivery\tp-delivery\funciones_platos.h
 
-1589248802 c:\users\andres\documents\github\tp-delivery\tp-delivery\funciones_clientes.h
+1589416824 c:\users\andres\documents\github\tp-delivery\tp-delivery\funciones_clientes.h
 
 1589406224 c:\users\ailen\onedrive\desktop\utn\labo ii\tp-delivery\tp-delivery\funciones_clientes.h
 
 1589406224 c:\users\ailen\onedrive\desktop\utn\labo ii\tp-delivery\tp-delivery\funciones_pedidos.h
 
-1589248802 c:\users\andres\documents\github\tp-delivery\tp-delivery\funciones_pedidos.h
+1589417980 c:\users\andres\documents\github\tp-delivery\tp-delivery\funciones_pedidos.h
 
-1589257539 c:\users\andres\documents\github\tp-delivery\tp-delivery\funciones_configuracion.h
+1589418583 c:\users\andres\documents\github\tp-delivery\tp-delivery\funciones_configuracion.h
 
 1589413240 c:\users\ailen\onedrive\desktop\utn\labo ii\tp-delivery\tp-delivery\funciones_configuracion.h
 

@@ -44,8 +44,9 @@ void seccion_configuracion()
 
 bool restaurar_backup()
 {
-
-    setColor (CYAN);
+    setBackgroundColor(WHITE);
+    setColor (1);
+    cls();
     cout<<"¿Realmente desea restaurar los archivos del backup?:"<<endl<<endl;
     cout<<"*-- 1 --> SI  --*"<<endl;
     cout<<"*-- 0 --> NO  --*"<<endl;
@@ -56,7 +57,7 @@ bool restaurar_backup()
     resetColor ();
     if(!confirmacion)
     {
-        cout<<"Restauracion no realizada."<<endl;
+        cout<<"\nRestauracion no realizada."<<endl;
         return true;
     }
 
@@ -145,7 +146,7 @@ bool restaurar_clientes()
     fclose(p);
 
     FILE *a;
-    a=fopen(archivo_clientes,"wb");
+    a=fopen(ARCHIVO_CLIENTES,"wb");
     if (a==NULL)return false;
 
     if (!((fwrite(todos_los_clientes, sizeof (Clientes), tam,a))==(unsigned int)tam))
@@ -208,6 +209,9 @@ return true;
 
 bool crear_backup()
 {
+    setBackgroundColor(WHITE);
+    setColor (1);
+    cls();
     cout<<"¿Realmente desea realizar un backup de los archivos?:"<<endl<<endl;
     cout<<"*-- 1 --> SI  --*"<<endl;
     cout<<"*-- 0 --> NO  --*"<<endl;
@@ -215,9 +219,10 @@ bool crear_backup()
 
     cout<<"\nIngrese su elección: ";
     if(!(validacion_booleano(&confirmacion))) return false;
+    resetColor();
     if(!confirmacion)
     {
-        cout<<"Backup no realizado."<<endl;
+        cout<<"\nBackup no realizado."<<endl;
         return true;
     }
 
@@ -278,7 +283,7 @@ return true;
 
 bool backup_clientes()
 {
-    int tam = tamanio_archivo(archivo_clientes, sizeof(Clientes));
+    int tam = tamanio_archivo(ARCHIVO_CLIENTES, sizeof(Clientes));
     Clientes *todos_los_clientes;
     todos_los_clientes=(Clientes *) malloc(sizeof(Clientes)*tam);
     if(todos_los_clientes==NULL)
@@ -288,7 +293,7 @@ bool backup_clientes()
     }
 
     FILE *p;
-    p=fopen(archivo_clientes,"rb");
+    p=fopen(ARCHIVO_CLIENTES,"rb");
     if(p==NULL)
     {
         cout<<"Error: imposible leer el archivo de Clientes.dat."<<endl;
